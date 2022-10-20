@@ -16,7 +16,7 @@ const routes = [
     }),
   },
   {
-    path: "/event/:id",
+    path: "/events/:id",
     name: "EventLayout",
     props: true,
     component: EventLayout,
@@ -39,9 +39,20 @@ const routes = [
     ],
   },
   {
-    path: "/about",
+    path: "/event/:id",
+    redirect: () => {
+      return { name: "EventDetails" };
+    },
+    children: [
+      { path: "register", redirect: () => ({ name: "EventRegister" }) },
+      { path: "edit", redirect: () => ({ name: "EventEdit" }) },
+    ],
+  },
+  {
+    path: "/about-us",
     name: "About",
     component: AboutView,
+    alias: "/about",
   },
 ];
 
